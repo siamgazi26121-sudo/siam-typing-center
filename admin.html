@@ -1,319 +1,290 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel | Siam Typing Center</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | Siam Typing Center</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f1f5f9;
-      color: #0f172a;
-    }
-
-    header {
-      background: #0f172a;
-      color: white;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    header p {
-      margin: 5px 0 0;
-      color: #5eead4;
-      font-size: 14px;
-    }
-
-    .btn {
-      display: inline-block;
-      border: none;
-      border-radius: 8px;
-      padding: 11px 15px;
-      background: #0d9488;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .home-btn {
-      background: #334155;
-    }
-
-    .container {
-      width: 92%;
-      max-width: 1100px;
-      margin: 30px auto;
-    }
-
-    .login-card {
-      max-width: 420px;
-      margin: 35px auto;
-      padding: 26px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px #0f172a12;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #0f172a;
-    }
-
-    .subtitle {
-      color: #64748b;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    label {
-      display: block;
-      margin: 17px 0 7px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 15px;
-      background: white;
-    }
-
-    input:focus {
-      outline: 2px solid #99f6e4;
-      border-color: #0d9488;
-    }
-
-    .login-btn {
-      width: 100%;
-      margin-top: 20px;
-      font-size: 16px;
-    }
-
-    .notice {
-      background: #fef3c7;
-      color: #92400e;
-      padding: 12px;
-      border-radius: 8px;
-      line-height: 1.6;
-      font-size: 13px;
-      margin-top: 18px;
-    }
-
-    #loginError {
-      color: #dc2626;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-
-    #dashboardSection {
-      display: none;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px #0f172a0a;
-    }
-
-    .stat-card p {
-      color: #64748b;
-      margin-bottom: 8px;
-    }
-
-    .stat-card strong {
-      font-size: 25px;
-      color: #0d9488;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      background: white;
-      border-radius: 12px;
-      padding: 12px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 750px;
-    }
-
-    th, td {
-      padding: 13px;
-      border-bottom: 1px solid #e2e8f0;
-      text-align: left;
-      vertical-align: top;
-      font-size: 14px;
-    }
-
-    th {
-      background: #0f172a;
-      color: white;
-    }
-
-    .empty {
-      padding: 25px;
-      text-align: center;
-      color: #64748b;
-    }
-
-    footer {
-      text-align: center;
-      color: #64748b;
-      padding: 25px;
-      font-size: 13px;
-    }
-
-    @media (max-width: 500px) {
-      header h1 {
-        font-size: 19px;
-      }
-
-      .login-card {
-        padding: 20px;
-      }
-    }
-  </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f1f5f9;color:#14213d}
+header{background:#0b1733;color:white;padding:24px 18px}
+header h1{font-size:23px}
+header p{color:#b9c7df;margin-top:7px}
+.container{width:94%;max-width:1000px;margin:25px auto}
+.card{background:white;padding:22px;border-radius:16px;
+box-shadow:0 5px 22px #10204012;margin-bottom:20px}
+h2{font-size:20px;margin-bottom:16px}
+label{font-size:14px;font-weight:bold}
+input,select{width:100%;padding:13px;margin:8px 0 15px;
+border:1px solid #d7deea;border-radius:9px;font-size:15px}
+button{padding:12px 17px;border:0;border-radius:9px;
+background:#087f8c;color:white;font-weight:bold;cursor:pointer}
+button:hover{background:#066570}
+button:disabled{opacity:.6}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);
+gap:14px;margin-bottom:20px}
+.stat{background:white;padding:20px;border-radius:14px;
+border-left:4px solid #087f8c}
+.stat p{font-size:13px;color:#64748b;margin-bottom:10px}
+.stat h3{font-size:27px}
+.note{font-size:13px;color:#64748b;line-height:1.7;margin-top:12px}
+.status{margin-top:12px;font-size:14px;overflow-wrap:anywhere}
+.table-wrap{overflow-x:auto}
+table{width:100%;min-width:650px;border-collapse:collapse}
+th,td{padding:12px;border-bottom:1px solid #e5eaf1;
+text-align:left;font-size:13px}
+th{background:#f5f8fc}
+.hidden{display:none}
+footer{text-align:center;padding:22px;color:#64748b;font-size:13px}
+@media(max-width:600px){.stats{grid-template-columns:1fr}
+.card{padding:16px}header h1{font-size:20px}}
+</style>
 </head>
 
 <body>
-  <header>
-    <div>
-      <h1>🔐 Admin Panel</h1>
-      <p>Siam Typing Center</p>
+<header>
+  <h1>SIAM TYPING CENTER</h1>
+  <p>Premium Admin Dashboard</p>
+</header>
+
+<main class="container">
+
+<section class="card" id="loginCard">
+  <h2>🔐 Admin Login</h2>
+  <form id="loginForm">
+    <label for="email">Admin Email</label>
+    <input id="email" type="email" autocomplete="username"
+      placeholder="Enter admin email" required>
+
+    <label for="password">Password</label>
+    <input id="password" type="password"
+      autocomplete="current-password" placeholder="Enter password" required>
+
+    <button id="loginButton" type="submit">Login</button>
+  </form>
+  <p class="status" id="message" role="status">Firebase প্রস্তুত হচ্ছে...</p>
+</section>
+
+<section id="dashboard" class="hidden">
+  <section class="card">
+    <h2>📊 Dashboard Overview</h2>
+    <div class="stats">
+      <div class="stat"><p>মোট অর্ডার</p><h3 id="total">0</h3></div>
+      <div class="stat"><p>নতুন অর্ডার</p><h3 id="pending">0</h3></div>
+      <div class="stat"><p>সম্পন্ন অর্ডার</p><h3 id="completed">0</h3></div>
     </div>
+    <button id="refreshButton" type="button">অর্ডার রিফ্রেশ</button>
+    <button id="logoutButton" type="button">Logout</button>
+    <p class="status" id="dashboardMessage"></p>
+  </section>
 
-    <div>
-      <a class="btn home-btn" href="./index.html">হোম পেজ</a>
-      <button id="logoutBtn" class="btn"
-        style="display:none;background:#dc2626;">
-        লগআউট
-      </button>
+  <section class="card">
+    <h2>📋 Customer Orders</h2>
+    <input id="search" type="search" placeholder="নাম বা ফোন দিয়ে খুঁজুন">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>নাম</th><th>ফোন</th><th>সার্ভিস</th>
+          <th>বিস্তারিত</th><th>স্ট্যাটাস</th></tr>
+        </thead>
+        <tbody id="ordersBody">
+          <tr><td colspan="5">অর্ডার লোড হচ্ছে...</td></tr>
+        </tbody>
+      </table>
     </div>
-  </header>
+  </section>
+</section>
 
-  <main class="container">
+<section class="card">
+  <h2>📞 Siam Typing Center</h2>
+  <p>WhatsApp:
+    <a href="https://wa.me/8801785764241">01785764241</a>
+  </p>
+  <p class="note">এই প্যানেলের কাজ করতে Firebase Authentication,
+  Firestore এবং সঠিক নিরাপত্তা নিয়ম প্রয়োজন।</p>
+</section>
 
-    <section id="loginSection" class="login-card">
-      <h2>অ্যাডমিন লগইন</h2>
-      <p class="subtitle">
-        Siam Typing Center-এর অর্ডার ম্যানেজমেন্টে প্রবেশ করতে লগইন করুন।
-      </p>
+</main>
+<footer>© 2026 Siam Typing Center</footer>
 
-      <form id="loginForm">
-        <label for="adminEmail">অ্যাডমিন ইমেইল</label>
-        <input
-          type="email"
-          id="adminEmail"
-          placeholder="আপনার অ্যাডমিন ইমেইল"
-          autocomplete="username"
-          required
-        >
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import {
+  getFirestore, collection, getDocs, doc, updateDoc
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        <label for="adminPassword">পাসওয়ার্ড</label>
-        <input
-          type="password"
-          id="adminPassword"
-          placeholder="পাসওয়ার্ড লিখুন"
-          autocomplete="current-password"
-          required
-        >
+/* Firebase Console থেকে পাওয়া আসল Config এখানে বসাবে */
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
 
-        <button type="submit" class="btn login-btn">
-          লগইন করুন
-        </button>
+const message = document.getElementById("message");
+const dashboardMessage = document.getElementById("dashboardMessage");
+const loginCard = document.getElementById("loginCard");
+const dashboard = document.getElementById("dashboard");
+const ordersBody = document.getElementById("ordersBody");
+let auth, db, allOrders = [];
 
-        <div id="loginError" role="alert"></div>
-      </form>
+function showMessage(text, color = "#b42318") {
+  message.textContent = text;
+  message.style.color = color;
+}
 
-      <div class="notice">
-        নিরাপত্তা: এই পেজের HTML একা নিরাপদ লগইন তৈরি করে না।
-        Firebase Authentication ও Firestore Security Rules
-        সেটআপ না করা পর্যন্ত এটি কার্যকর অ্যাডমিন প্যানেল নয়।
-      </div>
-    </section>
+function safeText(value) {
+  return value == null ? "" : String(value);
+}
 
-    <section id="dashboardSection">
-      <h2>অর্ডার ম্যানেজমেন্ট</h2>
-      <p class="subtitle">
-        গ্রাহকের অর্ডার দেখুন এবং অর্ডারের অবস্থা পরিচালনা করুন।
-      </p>
+try {
+  if (Object.values(firebaseConfig).some(v =>
+      !v || v.startsWith("PASTE_"))) {
+    throw new Error("Firebase Config বসানো হয়নি।");
+  }
 
-      <div class="stats">
-        <div class="stat-card">
-          <p>মোট অর্ডার</p>
-          <strong id="totalOrders">0</strong>
-        </div>
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  showMessage("Firebase প্রস্তুত। এখন লগইন করো।", "#087f8c");
+} catch (error) {
+  showMessage(error.message);
+}
 
-        <div class="stat-card">
-          <p>নতুন অর্ডার</p>
-          <strong id="newOrders">0</strong>
-        </div>
+document.getElementById("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!auth) {
+    showMessage("আগে Firebase Config সঠিকভাবে বসাও।");
+    return;
+  }
 
-        <div class="stat-card">
-          <p>সম্পন্ন অর্ডার</p>
-          <strong id="completedOrders">0</strong>
-        </div>
-      </div>
+  const button = document.getElementById("loginButton");
+  button.disabled = true;
+  showMessage("লগইন পরীক্ষা হচ্ছে...", "#087f8c");
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>নাম ও ফোন</th>
-              <th>সার্ভিস</th>
-              <th>বিস্তারিত</th>
-              <th>স্ট্যাটাস</th>
-              <th>অ্যাকশন</th>
-            </tr>
-          </thead>
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      document.getElementById("email").value.trim(),
+      document.getElementById("password").value
+    );
+  } catch (error) {
+    showMessage("লগইন হয়নি: " + error.code);
+  } finally {
+    button.disabled = false;
+  }
+});
 
-          <tbody id="adminOrdersTable">
-            <tr>
-              <td colspan="6" class="empty">
-                অর্ডার দেখাতে Firebase সেটআপ করতে হবে।
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+onAuthStateChanged(auth, async user => {
+  if (!user) {
+    loginCard.classList.remove("hidden");
+    dashboard.classList.add("hidden");
+    return;
+  }
 
-  </main>
+  loginCard.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+  await loadOrders();
+});
 
-  <footer>
-    © 2026 Siam Typing Center | All Rights Reserved
-  </footer>
+async function loadOrders() {
+  dashboardMessage.textContent = "অর্ডার লোড হচ্ছে...";
+  try {
+    const snapshot = await getDocs(collection(db, "orders"));
+    allOrders = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
 
-  <!-- Firebase চালু করতে হলে Firebase SDK ও app.js যুক্ত করতে হবে। -->
-  <!-- শুধু এই HTML বসালে লগইন বা অর্ডার সংরক্ষণ চালু হবে না। -->
+    document.getElementById("total").textContent = allOrders.length;
+    document.getElementById("pending").textContent =
+      allOrders.filter(o => o.status === "নতুন" ||
+        o.status === "pending").length;
+    document.getElementById("completed").textContent =
+      allOrders.filter(o => o.status === "সম্পন্ন" ||
+        o.status === "completed").length;
+
+    renderOrders();
+    dashboardMessage.textContent = "অর্ডার আপডেট হয়েছে।";
+  } catch (error) {
+    dashboardMessage.textContent =
+      "অর্ডার পড়া যায়নি: " + error.code +
+      "। Firestore Rules ও orders collection পরীক্ষা করো।";
+  }
+}
+
+function renderOrders() {
+  const query = document.getElementById("search").value.toLowerCase();
+  ordersBody.replaceChildren();
+
+  const filtered = allOrders.filter(o =>
+    [o.name, o.phone, o.service].some(v =>
+      safeText(v).toLowerCase().includes(query))
+  );
+
+  if (!filtered.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 5;
+    td.textContent = "কোনো অর্ডার পাওয়া যায়নি।";
+    tr.append(td);
+    ordersBody.append(tr);
+    return;
+  }
+
+  filtered.forEach(order => {
+    const tr = document.createElement("tr");
+    [order.name, order.phone, order.service, order.details].forEach(value => {
+      const td = document.createElement("td");
+      td.textContent = safeText(value);
+      tr.append(td);
+    });
+
+    const statusCell = document.createElement("td");
+    const select = document.createElement("select");
+    ["নতুন", "কাজ চলছে", "সম্পন্ন", "বাতিল"].forEach(status => {
+      const option = document.createElement("option");
+      option.value = status;
+      option.textContent = status;
+      select.append(option);
+    });
+
+    const current = safeText(order.status || "নতুন");
+    select.value = ["নতুন", "কাজ চলছে", "সম্পন্ন", "বাতিল"].includes(current)
+      ? current : "নতুন";
+
+    select.addEventListener("change", async () => {
+      try {
+        await updateDoc(doc(db, "orders", order.id), {
+          status: select.value
+        });
+        order.status = select.value;
+        await loadOrders();
+      } catch (error) {
+        dashboardMessage.textContent =
+          "স্ট্যাটাস বদলানো যায়নি: " + error.code;
+      }
+    });
+
+    statusCell.append(select);
+    tr.append(statusCell);
+    ordersBody.append(tr);
+  });
+}
+
+document.getElementById("search").addEventListener("input", renderOrders);
+document.getElementById("refreshButton").addEventListener("click", loadOrders);
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    dashboardMessage.textContent = "Logout হয়নি: " + error.code;
+  }
+});
+</script>
 </body>
 </html>

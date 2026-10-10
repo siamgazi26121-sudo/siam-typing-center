@@ -1,290 +1,460 @@
+
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel | Siam Typing Center</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1730">
+  <title>Admin Panel | Siam Typing Center</title>
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f1f5f9;color:#14213d}
-header{background:#0b1733;color:white;padding:24px 18px}
-header h1{font-size:23px}
-header p{color:#b9c7df;margin-top:7px}
-.container{width:94%;max-width:1000px;margin:25px auto}
-.card{background:white;padding:22px;border-radius:16px;
-box-shadow:0 5px 22px #10204012;margin-bottom:20px}
-h2{font-size:20px;margin-bottom:16px}
-label{font-size:14px;font-weight:bold}
-input,select{width:100%;padding:13px;margin:8px 0 15px;
-border:1px solid #d7deea;border-radius:9px;font-size:15px}
-button{padding:12px 17px;border:0;border-radius:9px;
-background:#087f8c;color:white;font-weight:bold;cursor:pointer}
-button:hover{background:#066570}
-button:disabled{opacity:.6}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);
-gap:14px;margin-bottom:20px}
-.stat{background:white;padding:20px;border-radius:14px;
-border-left:4px solid #087f8c}
-.stat p{font-size:13px;color:#64748b;margin-bottom:10px}
-.stat h3{font-size:27px}
-.note{font-size:13px;color:#64748b;line-height:1.7;margin-top:12px}
-.status{margin-top:12px;font-size:14px;overflow-wrap:anywhere}
-.table-wrap{overflow-x:auto}
-table{width:100%;min-width:650px;border-collapse:collapse}
-th,td{padding:12px;border-bottom:1px solid #e5eaf1;
-text-align:left;font-size:13px}
-th{background:#f5f8fc}
-.hidden{display:none}
-footer{text-align:center;padding:22px;color:#64748b;font-size:13px}
-@media(max-width:600px){.stats{grid-template-columns:1fr}
-.card{padding:16px}header h1{font-size:20px}}
-</style>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Bengali", sans-serif;
+      background: #f1f5f9;
+      color: #172033;
+    }
+
+    header {
+      background: #0b1730;
+      color: white;
+      padding: 22px 16px;
+    }
+
+    header h1 { margin: 0 0 6px; font-size: 23px; }
+    header p { margin: 0; color: #b8c7df; }
+
+    main {
+      width: 100%;
+      max-width: 1050px;
+      margin: 25px auto;
+      padding: 0 14px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 22px #1720330c;
+    }
+
+    h2 { margin-top: 0; font-size: 20px; }
+
+    input, button, select {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input, select {
+      border: 1px solid #cbd5e1;
+      background: white;
+    }
+
+    button {
+      background: #087e8b;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:disabled { opacity: 0.6; }
+
+    .secondary { background: #263650; }
+    .danger { background: #b42318; }
+
+    .message {
+      margin-top: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .hidden { display: none !important; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: #e7f5f6;
+      border-radius: 10px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .search { margin-bottom: 12px; }
+
+    .order {
+      border: 1px solid #dce3ed;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .order h3 { margin: 0 0 10px; }
+    .order p { line-height: 1.65; margin: 5px 0; }
+    .order select { margin-top: 10px; }
+
+    .muted { color: #64748b; font-size: 13px; }
+
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: 1fr; }
+      .card { padding: 16px; }
+    }
+  </style>
 </head>
 
 <body>
-<header>
-  <h1>SIAM TYPING CENTER</h1>
-  <p>Premium Admin Dashboard</p>
-</header>
+  <header>
+    <h1>Siam Typing Center</h1>
+    <p>Professional Admin Dashboard</p>
+  </header>
 
-<main class="container">
+  <main>
+    <section id="loginSection" class="card">
+      <h2>অ্যাডমিন লগইন</h2>
+      <p>আপনার অ্যাডমিন ইমেইল ও পাসওয়ার্ড দিয়ে প্রবেশ করুন।</p>
 
-<section class="card" id="loginCard">
-  <h2>🔐 Admin Login</h2>
-  <form id="loginForm">
-    <label for="email">Admin Email</label>
-    <input id="email" type="email" autocomplete="username"
-      placeholder="Enter admin email" required>
+      <form id="loginForm">
+        <label for="email">ইমেইল</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Admin email"
+          autocomplete="username"
+          required
+        >
 
-    <label for="password">Password</label>
-    <input id="password" type="password"
-      autocomplete="current-password" placeholder="Enter password" required>
+        <label for="password">পাসওয়ার্ড</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Admin password"
+          autocomplete="current-password"
+          required
+        >
 
-    <button id="loginButton" type="submit">Login</button>
-  </form>
-  <p class="status" id="message" role="status">Firebase প্রস্তুত হচ্ছে...</p>
-</section>
+        <button id="loginButton" type="submit">লগইন করুন</button>
+      </form>
 
-<section id="dashboard" class="hidden">
-  <section class="card">
-    <h2>📊 Dashboard Overview</h2>
-    <div class="stats">
-      <div class="stat"><p>মোট অর্ডার</p><h3 id="total">0</h3></div>
-      <div class="stat"><p>নতুন অর্ডার</p><h3 id="pending">0</h3></div>
-      <div class="stat"><p>সম্পন্ন অর্ডার</p><h3 id="completed">0</h3></div>
-    </div>
-    <button id="refreshButton" type="button">অর্ডার রিফ্রেশ</button>
-    <button id="logoutButton" type="button">Logout</button>
-    <p class="status" id="dashboardMessage"></p>
-  </section>
+      <div id="loginMessage" class="message" role="status"></div>
+    </section>
 
-  <section class="card">
-    <h2>📋 Customer Orders</h2>
-    <input id="search" type="search" placeholder="নাম বা ফোন দিয়ে খুঁজুন">
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>নাম</th><th>ফোন</th><th>সার্ভিস</th>
-          <th>বিস্তারিত</th><th>স্ট্যাটাস</th></tr>
-        </thead>
-        <tbody id="ordersBody">
-          <tr><td colspan="5">অর্ডার লোড হচ্ছে...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</section>
+    <section id="dashboard" class="hidden">
+      <div class="card">
+        <h2>অ্যাডমিন ড্যাশবোর্ড</h2>
+        <p id="adminEmail" class="muted"></p>
+        <button id="refreshButton" class="secondary" type="button">
+          অর্ডার রিফ্রেশ করুন
+        </button>
+        <button id="logoutButton" class="danger" type="button">
+          লগআউট
+        </button>
+        <div id="dashboardMessage" class="message" role="status"></div>
+      </div>
 
-<section class="card">
-  <h2>📞 Siam Typing Center</h2>
-  <p>WhatsApp:
-    <a href="https://wa.me/8801785764241">01785764241</a>
-  </p>
-  <p class="note">এই প্যানেলের কাজ করতে Firebase Authentication,
-  Firestore এবং সঠিক নিরাপত্তা নিয়ম প্রয়োজন।</p>
-</section>
+      <div class="stats">
+        <div class="stat">
+          <strong id="totalCount">0</strong>
+          মোট অর্ডার
+        </div>
+        <div class="stat">
+          <strong id="newCount">0</strong>
+          নতুন অর্ডার
+        </div>
+        <div class="stat">
+          <strong id="doneCount">0</strong>
+          সম্পন্ন অর্ডার
+        </div>
+      </div>
 
-</main>
-<footer>© 2026 Siam Typing Center</footer>
+      <div class="card">
+        <h2>কাস্টমারের অর্ডার</h2>
+        <input
+          id="searchInput"
+          class="search"
+          type="search"
+          placeholder="নাম, ফোন বা সার্ভিস দিয়ে খুঁজুন"
+        >
+        <div id="ordersList">অর্ডার লোড হচ্ছে...</div>
+      </div>
+    </section>
+  </main>
 
-<script type="module">
-import { initializeApp }
-  from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {
-  getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import {
-  getFirestore, collection, getDocs, doc, updateDoc
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
-/* Firebase Console থেকে পাওয়া আসল Config এখানে বসাবে */
-const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
-};
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-const message = document.getElementById("message");
-const dashboardMessage = document.getElementById("dashboardMessage");
-const loginCard = document.getElementById("loginCard");
-const dashboard = document.getElementById("dashboard");
-const ordersBody = document.getElementById("ordersBody");
-let auth, db, allOrders = [];
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      updateDoc,
+      doc
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-function showMessage(text, color = "#b42318") {
-  message.textContent = text;
-  message.style.color = color;
-}
+    // Siam Typing Center Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDcxUCtetUBVkcrK12RIzDTClPDMfvFK4M",
+      authDomain: "siam-typing-center.firebaseapp.com",
+      projectId: "siam-typing-center",
+      storageBucket: "siam-typing-center.firebasestorage.app",
+      messagingSenderId: "830701988283",
+      appId: "1:830701988283:web:c2a946beba51d457217c9e",
+      measurementId: "G-E0T1TNTC5C"
+    };
 
-function safeText(value) {
-  return value == null ? "" : String(value);
-}
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-try {
-  if (Object.values(firebaseConfig).some(v =>
-      !v || v.startsWith("PASTE_"))) {
-    throw new Error("Firebase Config বসানো হয়নি।");
-  }
+    const $ = (id) => document.getElementById(id);
 
-  const app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
-  showMessage("Firebase প্রস্তুত। এখন লগইন করো।", "#087f8c");
-} catch (error) {
-  showMessage(error.message);
-}
+    const loginSection = $("loginSection");
+    const dashboard = $("dashboard");
+    const loginForm = $("loginForm");
+    const loginButton = $("loginButton");
+    const loginMessage = $("loginMessage");
+    const dashboardMessage = $("dashboardMessage");
+    const ordersList = $("ordersList");
+    const searchInput = $("searchInput");
 
-document.getElementById("loginForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  if (!auth) {
-    showMessage("আগে Firebase Config সঠিকভাবে বসাও।");
-    return;
-  }
+    let allOrders = [];
 
-  const button = document.getElementById("loginButton");
-  button.disabled = true;
-  showMessage("লগইন পরীক্ষা হচ্ছে...", "#087f8c");
+    const statuses = ["নতুন", "কাজ চলছে", "সম্পন্ন", "বাতিল"];
 
-  try {
-    await signInWithEmailAndPassword(
-      auth,
-      document.getElementById("email").value.trim(),
-      document.getElementById("password").value
-    );
-  } catch (error) {
-    showMessage("লগইন হয়নি: " + error.code);
-  } finally {
-    button.disabled = false;
-  }
-});
+    function showMessage(element, message, isError = false) {
+      element.textContent = message;
+      element.style.color = isError ? "#b42318" : "#087e8b";
+    }
 
-onAuthStateChanged(auth, async user => {
-  if (!user) {
-    loginCard.classList.remove("hidden");
-    dashboard.classList.add("hidden");
-    return;
-  }
+    function firebaseError(error) {
+      const messages = {
+        "auth/invalid-credential":
+          "ইমেইল বা পাসওয়ার্ড সঠিক নয়।",
+        "auth/invalid-email":
+          "সঠিক ইমেইল লিখুন।",
+        "auth/user-not-found":
+          "এই ইমেইলে User পাওয়া যায়নি।",
+        "auth/wrong-password":
+          "পাসওয়ার্ড সঠিক নয়।",
+        "auth/too-many-requests":
+          "অনেকবার চেষ্টা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।",
+        "auth/network-request-failed":
+          "ইন্টারনেট সংযোগ পরীক্ষা করুন।",
+        "permission-denied":
+          "Firestore অনুমতি দেয়নি। নিরাপত্তা নিয়ম পরীক্ষা করতে হবে।"
+      };
 
-  loginCard.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-  await loadOrders();
-});
+      return messages[error.code] ||
+        ("সমস্যা হয়েছে: " + (error.message || error.code || "অজানা ত্রুটি"));
+    }
 
-async function loadOrders() {
-  dashboardMessage.textContent = "অর্ডার লোড হচ্ছে...";
-  try {
-    const snapshot = await getDocs(collection(db, "orders"));
-    allOrders = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-    document.getElementById("total").textContent = allOrders.length;
-    document.getElementById("pending").textContent =
-      allOrders.filter(o => o.status === "নতুন" ||
-        o.status === "pending").length;
-    document.getElementById("completed").textContent =
-      allOrders.filter(o => o.status === "সম্পন্ন" ||
-        o.status === "completed").length;
+      loginButton.disabled = true;
+      showMessage(loginMessage, "লগইন হচ্ছে...");
 
-    renderOrders();
-    dashboardMessage.textContent = "অর্ডার আপডেট হয়েছে।";
-  } catch (error) {
-    dashboardMessage.textContent =
-      "অর্ডার পড়া যায়নি: " + error.code +
-      "। Firestore Rules ও orders collection পরীক্ষা করো।";
-  }
-}
-
-function renderOrders() {
-  const query = document.getElementById("search").value.toLowerCase();
-  ordersBody.replaceChildren();
-
-  const filtered = allOrders.filter(o =>
-    [o.name, o.phone, o.service].some(v =>
-      safeText(v).toLowerCase().includes(query))
-  );
-
-  if (!filtered.length) {
-    const tr = document.createElement("tr");
-    const td = document.createElement("td");
-    td.colSpan = 5;
-    td.textContent = "কোনো অর্ডার পাওয়া যায়নি।";
-    tr.append(td);
-    ordersBody.append(tr);
-    return;
-  }
-
-  filtered.forEach(order => {
-    const tr = document.createElement("tr");
-    [order.name, order.phone, order.service, order.details].forEach(value => {
-      const td = document.createElement("td");
-      td.textContent = safeText(value);
-      tr.append(td);
-    });
-
-    const statusCell = document.createElement("td");
-    const select = document.createElement("select");
-    ["নতুন", "কাজ চলছে", "সম্পন্ন", "বাতিল"].forEach(status => {
-      const option = document.createElement("option");
-      option.value = status;
-      option.textContent = status;
-      select.append(option);
-    });
-
-    const current = safeText(order.status || "নতুন");
-    select.value = ["নতুন", "কাজ চলছে", "সম্পন্ন", "বাতিল"].includes(current)
-      ? current : "নতুন";
-
-    select.addEventListener("change", async () => {
       try {
-        await updateDoc(doc(db, "orders", order.id), {
-          status: select.value
-        });
-        order.status = select.value;
-        await loadOrders();
+        await signInWithEmailAndPassword(
+          auth,
+          $("email").value.trim(),
+          $("password").value
+        );
+
+        showMessage(loginMessage, "লগইন সফল!");
       } catch (error) {
-        dashboardMessage.textContent =
-          "স্ট্যাটাস বদলানো যায়নি: " + error.code;
+        showMessage(loginMessage, firebaseError(error), true);
+      } finally {
+        loginButton.disabled = false;
       }
     });
 
-    statusCell.append(select);
-    tr.append(statusCell);
-    ordersBody.append(tr);
-  });
-}
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        loginSection.classList.add("hidden");
+        dashboard.classList.remove("hidden");
+        $("adminEmail").textContent = "লগইন: " + user.email;
+        await loadOrders();
+      } else {
+        dashboard.classList.add("hidden");
+        loginSection.classList.remove("hidden");
+        allOrders = [];
+      }
+    });
 
-document.getElementById("search").addEventListener("input", renderOrders);
-document.getElementById("refreshButton").addEventListener("click", loadOrders);
-document.getElementById("logoutButton").addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    dashboardMessage.textContent = "Logout হয়নি: " + error.code;
-  }
-});
-</script>
+    async function loadOrders() {
+      ordersList.textContent = "অর্ডার লোড হচ্ছে...";
+      showMessage(dashboardMessage, "");
+
+      try {
+        const snapshot = await getDocs(collection(db, "orders"));
+
+        allOrders = snapshot.docs.map((item) => ({
+          id: item.id,
+          ...item.data()
+        }));
+
+        $("totalCount").textContent = allOrders.length;
+        $("newCount").textContent =
+          allOrders.filter((o) => (o.status || "নতুন") === "নতুন").length;
+        $("doneCount").textContent =
+          allOrders.filter((o) => o.status === "সম্পন্ন").length;
+
+        renderOrders();
+      } catch (error) {
+        ordersList.textContent = "";
+        showMessage(
+          dashboardMessage,
+          firebaseError(error),
+          true
+        );
+      }
+    }
+
+    function makeElement(tag, text, className) {
+      const element = document.createElement(tag);
+      element.textContent = text;
+      if (className) element.className = className;
+      return element;
+    }
+
+    function renderOrders() {
+      const term = searchInput.value.trim().toLowerCase();
+
+      const filtered = allOrders.filter((order) => {
+        const searchable = [
+          order.name,
+          order.phone,
+          order.service,
+          order.details,
+          order.status
+        ].join(" ").toLowerCase();
+
+        return searchable.includes(term);
+      });
+
+      ordersList.replaceChildren();
+
+      if (filtered.length === 0) {
+        ordersList.textContent = allOrders.length
+          ? "এই অনুসন্ধানে কোনো অর্ডার পাওয়া যায়নি।"
+          : "এখনো কোনো অর্ডার পাওয়া যায়নি।";
+        return;
+      }
+
+      filtered.forEach((order) => {
+        const card = document.createElement("article");
+        card.className = "order";
+
+        card.appendChild(makeElement("h3", "অর্ডার #" + order.id));
+
+        card.appendChild(makeElement(
+          "p", "নাম: " + (order.name || "উল্লেখ নেই")
+        ));
+
+        card.appendChild(makeElement(
+          "p", "ফোন: " + (order.phone || "উল্লেখ নেই")
+        ));
+
+        card.appendChild(makeElement(
+          "p", "সার্ভিস: " + (order.service || "উল্লেখ নেই")
+        ));
+
+        card.appendChild(makeElement(
+          "p", "বিস্তারিত: " + (order.details || "নেই")
+        ));
+
+        const statusLabel = makeElement("label", "অর্ডারের স্ট্যাটাস");
+        const select = document.createElement("select");
+        select.setAttribute("aria-label", "অর্ডারের স্ট্যাটাস");
+
+        const currentStatus = order.status || "নতুন";
+
+        statuses.forEach((status) => {
+          const option = document.createElement("option");
+          option.value = status;
+          option.textContent = status;
+          option.selected = status === currentStatus;
+          select.appendChild(option);
+        });
+
+        const saveButton = makeElement("button", "স্ট্যাটাস সেভ করুন");
+        saveButton.type = "button";
+
+        const statusMessage = makeElement("p", "", "message");
+
+        saveButton.addEventListener("click", async () => {
+          saveButton.disabled = true;
+          showMessage(statusMessage, "সেভ হচ্ছে...");
+
+          try {
+            await updateDoc(doc(db, "orders", order.id), {
+              status: select.value
+            });
+
+            order.status = select.value;
+
+            $("newCount").textContent =
+              allOrders.filter((o) => (o.status || "নতুন") === "নতুন").length;
+
+            $("doneCount").textContent =
+              allOrders.filter((o) => o.status === "সম্পন্ন").length;
+
+            showMessage(statusMessage, "স্ট্যাটাস সেভ হয়েছে।");
+          } catch (error) {
+            showMessage(statusMessage, firebaseError(error), true);
+          } finally {
+            saveButton.disabled = false;
+          }
+        });
+
+        card.appendChild(statusLabel);
+        card.appendChild(select);
+        card.appendChild(saveButton);
+        card.appendChild(statusMessage);
+
+        ordersList.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener("input", renderOrders);
+
+    $("refreshButton").addEventListener("click", loadOrders);
+
+    $("logoutButton").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        showMessage(loginMessage, "লগআউট হয়েছে।");
+      } catch (error) {
+        showMessage(dashboardMessage, firebaseError(error), true);
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,347 +1,1394 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1224">
 
-<title>Siam Typing Center | Online Services</title>
+  <title>Siam Typing Center | Online Typing & Document Services</title>
 
-<meta name="description" content="Siam Typing Center - বাংলা ও ইংরেজি টাইপিং, CV, আবেদনপত্র ও অনলাইন ডকুমেন্ট সার্ভিস।">
+  <meta name="description"
+    content="Siam Typing Center থেকে CV, আবেদনপত্র, বাংলা ও ইংরেজি টাইপিং, PDF এবং Word ডকুমেন্টের কাজের অর্ডার দিন।">
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <style>
+    :root {
+      --navy: #0b1224;
+      --navy-light: #14213d;
+      --teal: #14b8a6;
+      --teal-dark: #0f9488;
+      --white: #ffffff;
+      --bg: #f5f8fc;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 14px 40px rgba(15, 23, 42, .08);
+      --radius: 18px;
+    }
 
-body {
-  font-family: Arial, "Noto Sans Bengali", sans-serif;
-  background: #f4f7fb;
-  color: #18243a;
-  line-height: 1.7;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-header {
-  background: #101c35;
-  color: white;
-  padding: 18px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
 
-.logo {
-  font-size: 23px;
-  font-weight: bold;
-  color: #60e7cf;
-}
+    body {
+      font-family: system-ui, -apple-system, "Noto Sans Bengali",
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 14px;
-  font-size: 14px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.hero {
-  padding: 75px 7%;
-  text-align: center;
-  color: white;
-  background: linear-gradient(135deg, #101c35, #174e76);
-}
+    button, input, select, textarea {
+      font: inherit;
+    }
 
-.hero h1 {
-  font-size: clamp(30px, 6vw, 48px);
-  margin-bottom: 15px;
-}
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.hero p {
-  max-width: 650px;
-  margin: 0 auto 25px;
-  color: #e1edf7;
-}
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
 
-.btn {
-  display: inline-block;
-  padding: 12px 23px;
-  margin: 5px;
-  border-radius: 9px;
-  text-decoration: none;
-  font-weight: bold;
-  background: #16c79a;
-  color: #10263a;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-}
+    .topbar {
+      background: #070d1a;
+      color: #dbeafe;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
 
-.btn-outline {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 18, 36, .97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
 
-section {
-  padding: 48px 6%;
-}
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 28px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: white;
+      min-width: 0;
+    }
 
-.section-title h2 {
-  font-size: 29px;
-  color: #142c4c;
-}
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--teal), #67e8f9);
+      color: #062c36;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 23px;
+      box-shadow: 0 6px 20px #14b8a633;
+    }
 
-.section-title p {
-  color: #64748b;
-}
+    .brand-name {
+      font-size: 17px;
+      font-weight: 850;
+      line-height: 1.35;
+      letter-spacing: -.3px;
+    }
 
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
+    .brand-tagline {
+      font-size: 11px;
+      color: #a5b4fc;
+      letter-spacing: .4px;
+    }
 
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 22px #1227440c;
-  border: 1px solid #e6edf5;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: #dbe3f2;
+      font-size: 14px;
+    }
 
-.card .icon {
-  font-size: 32px;
-}
+    .nav-links a:hover {
+      color: #5eead4;
+    }
 
-.card h3 {
-  margin: 8px 0;
-  color: #174e76;
-}
+    .nav-cta {
+      background: var(--teal);
+      color: #062c36 !important;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-weight: 800;
+    }
 
-.card p {
-  color: #64748b;
-  font-size: 14px;
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      padding: 82px 0 76px;
+      background:
+        radial-gradient(ellipse at 85% 20%, #0f766e55, transparent 36%),
+        radial-gradient(ellipse at 5% 90%, #1d4ed855, transparent 34%),
+        linear-gradient(135deg, #0b1224, #14213d 72%, #102e3a);
+    }
 
-.order-box {
-  max-width: 620px;
-  margin: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 22px #1227440c;
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 48px;
+    }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin: 13px 0 5px;
-}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #5eead455;
+      background: #14b8a614;
+      color: #99f6e4;
+      border-radius: 50px;
+      padding: 7px 13px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
 
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #d5deea;
-  border-radius: 8px;
-  font: inherit;
-  background: #fff;
-}
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      background: #5eead4;
+      border-radius: 50%;
+    }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
+    .hero h1 {
+      font-size: clamp(32px, 4.5vw, 54px);
+      line-height: 1.2;
+      letter-spacing: -1.3px;
+      margin-bottom: 20px;
+    }
 
-.order-box .btn {
-  width: 100%;
-  margin: 18px 0 0;
-}
+    .hero h1 span {
+      color: #5eead4;
+    }
 
-.contact {
-  text-align: center;
-  background: #e7f4f5;
-}
+    .hero-desc {
+      max-width: 570px;
+      color: #cbd5e1;
+      font-size: 16px;
+      margin-bottom: 27px;
+    }
 
-footer {
-  text-align: center;
-  padding: 22px;
-  background: #101c35;
-  color: #dce6f2;
-  font-size: 13px;
-}
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-footer a {
-  color: #60e7cf;
-}
+    .btn {
+      min-height: 46px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 19px;
+      border: 0;
+      border-radius: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
 
-@media (max-width: 500px) {
-  header {
-    justify-content: center;
-    text-align: center;
-  }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
 
-  nav a {
-    margin: 0 6px;
-  }
+    .btn-primary {
+      background: var(--teal);
+      color: #062c36;
+    }
 
-  .hero {
-    padding: 55px 5%;
-  }
-}
-</style>
+    .btn-primary:hover {
+      background: #5eead4;
+    }
+
+    .btn-outline {
+      border: 1px solid #ffffff45;
+      color: white;
+      background: #ffffff09;
+    }
+
+    .btn-dark {
+      background: var(--navy);
+      color: white;
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #aab8ce;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 27px;
+      border-radius: 24px;
+      border: 1px solid #ffffff20;
+      background: linear-gradient(145deg, #ffffff15, #ffffff08);
+      box-shadow: 0 24px 70px #00000025;
+    }
+
+    .hero-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .hero-card-head h2 {
+      font-size: 19px;
+    }
+
+    .live-pill {
+      font-size: 11px;
+      padding: 5px 9px;
+      background: #14b8a625;
+      color: #99f6e4;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .preview-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px 0;
+      border-bottom: 1px solid #ffffff16;
+    }
+
+    .preview-item:last-child {
+      border-bottom: 0;
+    }
+
+    .preview-icon {
+      width: 45px;
+      height: 45px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      background: #ffffff12;
+      border-radius: 13px;
+    }
+
+    .preview-item strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .preview-item small {
+      display: block;
+      color: #b7c4d8;
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-white {
+      background: white;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      text-align: center;
+      margin: 0 auto 38px;
+    }
+
+    .section-kicker {
+      color: var(--teal-dark);
+      font-weight: 850;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1.3px;
+      margin-bottom: 9px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(26px, 3.2vw, 37px);
+      line-height: 1.3;
+      color: var(--navy);
+      margin-bottom: 13px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      padding: 25px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 5px 18px #0f172a05;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: #5eead4;
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 15px;
+      background: #ccfbf1;
+      font-size: 27px;
+      margin-bottom: 19px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .service-price {
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .service-btn {
+      width: 100%;
+      background: #f0fdfa;
+      color: #0f766e;
+      border: 1px solid #99f6e4;
+    }
+
+    .service-btn:hover {
+      background: #ccfbf1;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 25px;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      background: var(--navy);
+      color: #5eead4;
+      border-radius: 12px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .step-card h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .order-section {
+      background:
+        radial-gradient(ellipse at 90% 10%, #0f766e30, transparent 30%),
+        linear-gradient(135deg, #0b1224, #14213d);
+    }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .order-intro {
+      color: white;
+      padding-top: 12px;
+    }
+
+    .order-intro .section-kicker {
+      color: #5eead4;
+    }
+
+    .order-intro h2 {
+      font-size: clamp(27px, 3.5vw, 39px);
+      line-height: 1.3;
+      margin-bottom: 17px;
+    }
+
+    .order-intro > p {
+      color: #cbd5e1;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    .order-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 15px 0;
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+
+    .check {
+      color: #5eead4;
+      font-weight: 900;
+    }
+
+    .order-form {
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 25px 70px #00000025;
+    }
+
+    .order-form h3 {
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .form-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 21px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .required {
+      color: #dc2626;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: var(--text);
+      padding: 12px 13px;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      min-height: 47px;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal-dark);
+      box-shadow: 0 0 0 3px #14b8a61b;
+    }
+
+    .form-help {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .privacy-note {
+      background: #f1f5f9;
+      border-radius: 9px;
+      padding: 11px;
+      font-size: 12px;
+      color: #475569;
+      margin: 4px 0 17px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      font-size: 15px;
+      min-height: 51px;
+    }
+
+    .form-error {
+      display: none;
+      color: #b91c1c;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      margin-bottom: 12px;
+      padding: 17px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    details p {
+      color: var(--muted);
+      font-size: 14px;
+      padding-top: 12px;
+    }
+
+    .contact-banner {
+      background: linear-gradient(135deg, #ccfbf1, #ecfeff);
+      border: 1px solid #99f6e4;
+      border-radius: 22px;
+      padding: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .contact-banner h2 {
+      color: var(--navy);
+      font-size: clamp(23px, 3vw, 32px);
+      margin-bottom: 7px;
+    }
+
+    .contact-banner p {
+      color: #475569;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #070d1a;
+      color: #cbd5e1;
+      padding: 45px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .8fr;
+      gap: 30px;
+      padding-bottom: 30px;
+    }
+
+    .footer-title {
+      color: white;
+      font-weight: 850;
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .footer-text {
+      color: #9caec5;
+      font-size: 13px;
+      max-width: 370px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      color: #b7c4d8;
+    }
+
+    .footer-links a:hover {
+      color: #5eead4;
+    }
+
+    .copyright {
+      border-top: 1px solid #ffffff18;
+      padding-top: 18px;
+      text-align: center;
+      color: #8291a8;
+      font-size: 12px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      z-index: 60;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 17px;
+      border-radius: 50px;
+      background: #25d366;
+      color: #052e16;
+      font-weight: 900;
+      box-shadow: 0 8px 25px #00000025;
+    }
+
+    .whatsapp-float span {
+      font-size: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 13px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .order-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .order-intro {
+        max-width: 650px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .brand-logo {
+        width: 41px;
+        height: 41px;
+      }
+
+      .brand-name {
+        font-size: 14px;
+      }
+
+      .brand-tagline {
+        font-size: 10px;
+      }
+
+      .nav-links {
+        gap: 0;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .nav-cta {
+        font-size: 12px;
+        padding: 9px 11px;
+      }
+
+      .hero {
+        padding: 57px 0 50px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero h1 {
+        font-size: 35px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
+      }
+
+      .hero-card {
+        padding: 21px;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 27px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .service-card {
+        padding: 21px;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .order-form {
+        padding: 21px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .contact-banner {
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 23px;
+      }
+
+      .whatsapp-float {
+        right: 12px;
+        bottom: 12px;
+        padding: 11px 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">Siam Typing Center</div>
-  <nav>
-    <a href="#home">হোম</a>
-    <a href="#services">সার্ভিস</a>
-    <a href="#order">অর্ডার</a>
-    <a href="#contact">যোগাযোগ</a>
-  </nav>
-</header>
+  <div class="topbar">
+    Professional Typing & Document Services | Online Order Available
+  </div>
 
-<main>
-<section class="hero" id="home">
-  <h1>আপনার ডিজিটাল কাজ, আমাদের দায়িত্ব</h1>
-  <p>
-    বাংলা ও ইংরেজি টাইপিং, CV তৈরি, আবেদনপত্র
-    এবং বিভিন্ন ডকুমেন্ট তৈরির জন্য যোগাযোগ করুন
-    Siam Typing Center-এর সঙ্গে।
-  </p>
-  <a class="btn" href="#order">অর্ডার করুন</a>
-  <a class="btn btn-outline"
-     href="https://wa.me/8801785764241"
-     target="_blank" rel="noopener">
-    WhatsApp-এ যোগাযোগ
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="brand" aria-label="Siam Typing Center Home">
+        <div class="brand-logo">S</div>
+        <div>
+          <div class="brand-name">Siam Typing Center</div>
+          <div class="brand-tagline">TYPE • FORMAT • DELIVER</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">হোম</a>
+        <a href="#services">সার্ভিস</a>
+        <a href="#how-it-works">কীভাবে কাজ করে</a>
+        <a href="#contact" class="nav-cta">অর্ডার করুন ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Your Online Document Partner
+          </div>
+
+          <h1>
+            আপনার ডকুমেন্টের কাজ,
+            <span>এখন আরও সহজ।</span>
+          </h1>
+
+          <p class="hero-desc">
+            CV তৈরি, বাংলা ও ইংরেজি টাইপিং, আবেদনপত্র, চুক্তিপত্র,
+            PDF ও Word ফরম্যাটিং—আপনার প্রয়োজনীয় কাজের অর্ডার দিন
+            অনলাইন থেকেই।
+          </p>
+
+          <div class="hero-actions">
+            <a href="#order" class="btn btn-primary">
+              ✍️ অর্ডার দিন
+            </a>
+            <a href="#services" class="btn btn-outline">
+              সার্ভিস দেখুন →
+            </a>
+          </div>
+
+          <p class="hero-note">
+            ✓ কাজ শুরুর আগে মূল্য আলোচনা করুন &nbsp; ✓ WhatsApp-এ যোগাযোগ
+          </p>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-head">
+            <h2>আমাদের সার্ভিস</h2>
+            <span class="live-pill">ONLINE ORDER</span>
+          </div>
+
+          <div class="preview-item">
+            <div class="preview-icon">📄</div>
+            <div>
+              <strong>CV & Resume</strong>
+              <small>প্রফেশনাল ডকুমেন্ট তৈরি</small>
+            </div>
+          </div>
+
+          <div class="preview-item">
+            <div class="preview-icon">⌨️</div>
+            <div>
+              <strong>বাংলা ও ইংরেজি টাইপিং</strong>
+              <small>পরিষ্কার ও গোছানো লেখা</small>
+            </div>
+          </div>
+
+          <div class="preview-item">
+            <div class="preview-icon">📝</div>
+            <div>
+              <strong>আবেদনপত্র ও চুক্তিপত্র</strong>
+              <small>আপনার নির্দেশনা অনুযায়ী</small>
+            </div>
+          </div>
+
+          <div class="preview-item">
+            <div class="preview-icon">📑</div>
+            <div>
+              <strong>PDF ও Word</strong>
+              <small>ফরম্যাটিং ও ডকুমেন্ট সাজানো</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">Our Services</div>
+          <h2>আপনার প্রয়োজনীয় সার্ভিস বেছে নিন</h2>
+          <p>
+            আপনার কাজের ধরন নির্বাচন করুন। অর্ডার ফর্মে বিস্তারিত লিখে
+            WhatsApp-এর মাধ্যমে পাঠিয়ে দিন।
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <div class="service-icon">📄</div>
+            <h3>CV ও Resume তৈরি</h3>
+            <p>চাকরির আবেদন বা ব্যক্তিগত ব্যবহারের জন্য পরিপাটি CV ও Resume তৈরি।</p>
+            <div class="service-price">মূল্য: কাজ অনুযায়ী</div>
+            <button class="btn service-btn" data-service="CV ও Resume তৈরি">
+              এই সার্ভিস নিন →
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">⌨️</div>
+            <h3>বাংলা ও ইংরেজি টাইপিং</h3>
+            <p>হাতে লেখা বা দেওয়া টেক্সট অনুযায়ী বাংলা ও ইংরেজি টাইপিং।</p>
+            <div class="service-price">মূল্য: কাজ অনুযায়ী</div>
+            <button class="btn service-btn" data-service="বাংলা ও ইংরেজি টাইপিং">
+              এই সার্ভিস নিন →
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">📝</div>
+            <h3>আবেদনপত্র ও চিঠি</h3>
+            <p>আপনার তথ্য ও নির্দেশনা অনুযায়ী আবেদনপত্র, দরখাস্ত ও চিঠি সাজানো।</p>
+            <div class="service-price">মূল্য: কাজ অনুযায়ী</div>
+            <button class="btn service-btn" data-service="আবেদনপত্র ও চিঠি">
+              এই সার্ভিস নিন →
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🤝</div>
+            <h3>চুক্তিপত্র ও Agreement</h3>
+            <p>আপনার দেওয়া শর্ত অনুযায়ী চুক্তিপত্রের টাইপিং ও ফরম্যাটিং।</p>
+            <div class="service-price">মূল্য: কাজ অনুযায়ী</div>
+            <button class="btn service-btn" data-service="চুক্তিপত্র ও Agreement">
+              এই সার্ভিস নিন →
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">📑</div>
+            <h3>PDF ও Word ফরম্যাটিং</h3>
+            <p>ডকুমেন্ট সাজানো, পেজ সেটআপ, লেখা গোছানো এবং উপযুক্ত ফরম্যাটিং।</p>
+            <div class="service-price">মূল্য: কাজ অনুযায়ী</div>
+            <button class="btn service-btn" data-service="PDF ও Word ফরম্যাটিং">
+              এই সার্ভিস নিন →
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✨</div>
+            <h3>অন্যান্য ডকুমেন্ট কাজ</h3>
+            <p>আপনার বিশেষ কাজের ধরন ও প্রয়োজনীয়তা জানিয়ে অর্ডার দিন।</p>
+            <div class="service-price">মূল্য: আলোচনা সাপেক্ষে</div>
+            <button class="btn service-btn" data-service="অন্যান্য ডকুমেন্ট কাজ">
+              এই সার্ভিস নিন →
+            </button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section-white" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">Simple Process</div>
+          <h2>মাত্র ৩টি ধাপে অর্ডার দিন</h2>
+          <p>সহজভাবে কাজের বিবরণ পাঠান এবং পরবর্তী নির্দেশনা জেনে নিন।</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <h3>সার্ভিস নির্বাচন করুন</h3>
+            <p>আপনার প্রয়োজন অনুযায়ী সার্ভিস বেছে নিয়ে অর্ডার ফর্ম পূরণ করুন।</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <h3>WhatsApp-এ পাঠান</h3>
+            <p>ফর্মের তথ্য WhatsApp-এ খুলবে। বার্তাটি দেখে নিজে Send চাপুন।</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <h3>মূল্য ও সময় নিশ্চিত করুন</h3>
+            <p>কাজের মূল্য, সময়সীমা ও ফাইল পাঠানোর পদ্ধতি আলোচনা করে ঠিক করুন।</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER FORM -->
+    <section class="section order-section" id="order">
+      <div class="container order-grid">
+
+        <div class="order-intro">
+          <div class="section-kicker">Place an Order</div>
+          <h2>আপনার কাজের বিবরণ পাঠান</h2>
+          <p>
+            নিচের ফর্ম পূরণ করুন। আপনার তথ্য দিয়ে একটি WhatsApp বার্তা তৈরি
+            হবে। পাঠানোর আগে তথ্য যাচাই করতে পারবেন।
+          </p>
+
+          <div class="order-benefit">
+            <span class="check">✓</span>
+            <span>আপনার প্রয়োজনীয় সার্ভিস বেছে নিন।</span>
+          </div>
+
+          <div class="order-benefit">
+            <span class="check">✓</span>
+            <span>কাজের বিবরণ ও প্রয়োজনীয় সময় জানান।</span>
+          </div>
+
+          <div class="order-benefit">
+            <span class="check">✓</span>
+            <span>মূল্য নিশ্চিত করে তারপর কাজ শুরু করুন।</span>
+          </div>
+        </div>
+
+        <form class="order-form" id="orderForm">
+          <h3>অর্ডার ফর্ম</h3>
+          <p class="form-subtitle">
+            * চিহ্ন দেওয়া তথ্য পূরণ করা প্রয়োজন।
+          </p>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="customerName">
+                আপনার নাম <span class="required">*</span>
+              </label>
+              <input
+                id="customerName"
+                name="customerName"
+                type="text"
+                maxlength="80"
+                autocomplete="name"
+                placeholder="আপনার নাম লিখুন"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="customerPhone">
+                মোবাইল নম্বর <span class="required">*</span>
+              </label>
+              <input
+                id="customerPhone"
+                name="customerPhone"
+                type="tel"
+                maxlength="20"
+                autocomplete="tel"
+                placeholder="01XXXXXXXXX"
+                required>
+            </div>
+
+            <div class="form-group full">
+              <label for="service">
+                সার্ভিস নির্বাচন করুন <span class="required">*</span>
+              </label>
+              <select id="service" name="service" required>
+                <option value="">-- সার্ভিস বেছে নিন --</option>
+                <option>CV ও Resume তৈরি</option>
+                <option>বাংলা ও ইংরেজি টাইপিং</option>
+                <option>আবেদনপত্র ও চিঠি</option>
+                <option>চুক্তিপত্র ও Agreement</option>
+                <option>PDF ও Word ফরম্যাটিং</option>
+                <option>অন্যান্য ডকুমেন্ট কাজ</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fileType">কোন ফাইল প্রয়োজন?</label>
+              <select id="fileType" name="fileType">
+                <option value="জানা নেই / আলোচনা করব">আলোচনা করব</option>
+                <option value="Word (DOCX)">Word (DOCX)</option>
+                <option value="PDF">PDF</option>
+                <option value="Word ও PDF দুটোই">Word ও PDF দুটোই</option>
+                <option value="শুধু টাইপিং">শুধু টাইপিং</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="deadline">কাজ কখন প্রয়োজন?</label>
+              <select id="deadline" name="deadline">
+                <option value="আলোচনা করে ঠিক করব">আলোচনা করে ঠিক করব</option>
+                <option value="যত দ্রুত সম্ভব">যত দ্রুত সম্ভব</option>
+                <option value="১–২ দিনের মধ্যে">১–২ দিনের মধ্যে</option>
+                <option value="৩–৫ দিনের মধ্যে">৩–৫ দিনের মধ্যে</option>
+                <option value="নির্দিষ্ট তারিখ আছে">নির্দিষ্ট তারিখ আছে</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="details">
+                কাজের বিস্তারিত <span class="required">*</span>
+              </label>
+              <textarea
+                id="details"
+                name="details"
+                maxlength="2000"
+                placeholder="কী কাজ করতে হবে, কত পৃষ্ঠা, কী কী তথ্য থাকবে—লিখুন।"
+                required></textarea>
+              <span class="form-help">
+                এখানে পাসওয়ার্ড, OTP, ব্যাংক বা পরিচয়পত্রের সংবেদনশীল তথ্য লিখবেন না।
+              </span>
+            </div>
+
+          </div>
+
+          <div class="privacy-note">
+            🔒 এই ফর্মের তথ্য ওয়েবসাইটের ডেটাবেসে সংরক্ষিত হয় না।
+            WhatsApp-এ পাঠানোর আগে বার্তাটি আপনি যাচাই করতে পারবেন।
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">
+            WhatsApp-এ অর্ডার পাঠান ↗
+          </button>
+
+          <div class="form-error" id="formError" role="alert"></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">FAQ</div>
+          <h2>সাধারণ কিছু প্রশ্ন</h2>
+          <p>অর্ডার করার আগে প্রয়োজনীয় বিষয়গুলো জেনে নিন।</p>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>কাজের মূল্য কত?</summary>
+            <p>
+              কাজের ধরন, পৃষ্ঠা, জটিলতা ও সময়সীমার ওপর মূল্য নির্ভর করবে।
+              অর্ডার নিশ্চিত করার আগে WhatsApp-এ মূল্য আলোচনা করে নিন।
+            </p>
+          </details>
+
+          <details>
+            <summary>কীভাবে অর্ডার করব?</summary>
+            <p>
+              সার্ভিস নির্বাচন করে ফর্ম পূরণ করুন। WhatsApp খুললে তথ্য যাচাই
+              করে Send চাপুন।
+            </p>
+          </details>
+
+          <details>
+            <summary>PDF এবং Word দুটোই কি পাওয়া যাবে?</summary>
+            <p>
+              আপনার প্রয়োজন ফর্মে উল্লেখ করুন। কাজটি সম্ভব কি না এবং
+              কোন ফরম্যাটে দেওয়া যাবে, তা আগে নিশ্চিত করুন।
+            </p>
+          </details>
+
+          <details>
+            <summary>আমার অর্ডার কি ওয়েবসাইটে সংরক্ষিত হবে?</summary>
+            <p>
+              বর্তমান সংস্করণে অর্ডার ওয়েবসাইটের ডেটাবেসে সংরক্ষিত হয় না।
+              বার্তাটি WhatsApp-এ পাঠানো হলে সেখানেই যোগাযোগ চলবে।
+              অনলাইন অর্ডার তালিকার জন্য আলাদা ব্যাকএন্ড প্রয়োজন।
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-white" id="contact">
+      <div class="container">
+        <div class="contact-banner">
+          <div>
+            <h2>আপনার কাজ নিয়ে কথা বলুন</h2>
+            <p>
+              সার্ভিস, মূল্য বা সময়সীমা জানতে WhatsApp-এ যোগাযোগ করুন।
+            </p>
+          </div>
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/8801785764241"
+            target="_blank"
+            rel="noopener noreferrer">
+            WhatsApp-এ যোগাযোগ ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-title">Siam Typing Center</div>
+          <p class="footer-text">
+            বাংলা ও ইংরেজি টাইপিং, CV, আবেদনপত্র এবং ডকুমেন্ট
+            ফরম্যাটিংয়ের জন্য আপনার অনলাইন সার্ভিস।
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-title">দ্রুত লিংক</div>
+          <div class="footer-links">
+            <a href="#home">হোম পেজ</a>
+            <a href="#services">সার্ভিসসমূহ</a>
+            <a href="#order">অর্ডার ফর্ম</a>
+            <a href="#faq">সাধারণ প্রশ্ন</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">যোগাযোগ</div>
+          <div class="footer-links">
+            <a href="https://wa.me/8801785764241"
+               target="_blank" rel="noopener noreferrer">
+              WhatsApp: 01785764241
+            </a>
+            <a href="#order">অনলাইন অর্ডার</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © <span id="currentYear">2026</span> Siam Typing Center.
+        All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/8801785764241"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp-এ যোগাযোগ করুন">
+    <span>☏</span> WhatsApp
   </a>
-</section>
 
-<section id="services">
-  <div class="section-title">
-    <h2>আমাদের সার্ভিস</h2>
-    <p>আপনার প্রয়োজন অনুযায়ী ডিজিটাল সেবা</p>
-  </div>
+  <script>
+    "use strict";
 
-  <div class="services">
-    <div class="card">
-      <div class="icon">⌨️</div>
-      <h3>বাংলা ও ইংরেজি টাইপিং</h3>
-      <p>হাতের লেখা বা দেওয়া তথ্য থেকে ডকুমেন্ট টাইপিং।</p>
-    </div>
+    // WhatsApp নম্বর আন্তর্জাতিক ফরম্যাটে: বাংলাদেশের জন্য 880 দিয়ে শুরু।
+    const WHATSAPP_NUMBER = "8801785764241";
 
-    <div class="card">
-      <div class="icon">📄</div>
-      <h3>CV ও Resume</h3>
-      <p>চাকরি বা ব্যক্তিগত ব্যবহারের জন্য CV তৈরি।</p>
-    </div>
+    // সার্ভিস কার্ডে চাপলে অর্ডার ফর্মে সার্ভিসটি নির্বাচন হবে।
+    document.querySelectorAll("[data-service]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const serviceSelect = document.getElementById("service");
+        serviceSelect.value = button.dataset.service;
 
-    <div class="card">
-      <div class="icon">📝</div>
-      <h3>আবেদনপত্র</h3>
-      <p>বিভিন্ন আবেদনপত্র ও প্রয়োজনীয় ডকুমেন্ট লেখা।</p>
-    </div>
+        document.getElementById("order").scrollIntoView({
+          behavior: "smooth"
+        });
 
-    <div class="card">
-      <div class="icon">💻</div>
-      <h3>ডিজিটাল ডকুমেন্ট</h3>
-      <p>Word-এ লেখা সাজানো, ফরম্যাটিং ও সাধারণ ডকুমেন্ট প্রস্তুত।</p>
-    </div>
-  </div>
-</section>
+        serviceSelect.focus({ preventScroll: true });
+      });
+    });
 
-<section id="order">
-  <div class="section-title">
-    <h2>অনলাইনে অর্ডার দিন</h2>
-    <p>ফর্ম পূরণ করে WhatsApp-এ অর্ডার পাঠান</p>
-  </div>
+    // ফর্মের তথ্য থেকে WhatsApp বার্তা তৈরি করা।
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-  <form class="order-box" id="orderForm">
-    <label for="name">আপনার নাম</label>
-    <input id="name" name="name"
-      placeholder="আপনার নাম লিখুন" required>
+      const errorBox = document.getElementById("formError");
+      errorBox.style.display = "none";
+      errorBox.textContent = "";
 
-    <label for="phone">মোবাইল নম্বর</label>
-    <input id="phone" name="phone"
-      type="tel" placeholder="আপনার নম্বর লিখুন" required>
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const service = document.getElementById("service").value;
+      const fileType = document.getElementById("fileType").value;
+      const deadline = document.getElementById("deadline").value;
+      const details = document.getElementById("details").value.trim();
 
-    <label for="service">কোন সার্ভিস লাগবে?</label>
-    <select id="service" name="service" required>
-      <option value="">সার্ভিস নির্বাচন করুন</option>
-      <option>বাংলা টাইপিং</option>
-      <option>ইংরেজি টাইপিং</option>
-      <option>CV / Resume তৈরি</option>
-      <option>আবেদনপত্র লেখা</option>
-      <option>Word ডকুমেন্ট ফরম্যাটিং</option>
-      <option>অন্যান্য কাজ</option>
-    </select>
+      if (!name || !phone || !service || !details) {
+        errorBox.textContent = "অনুগ্রহ করে তারকা চিহ্ন দেওয়া সব তথ্য পূরণ করুন।";
+        errorBox.style.display = "block";
+        return;
+      }
 
-    <label for="details">কাজের বিবরণ</label>
-    <textarea id="details" name="details"
-      placeholder="কী কাজ করাতে চান লিখুন" required></textarea>
+      const phoneDigits = phone.replace(/[^\d+]/g, "");
 
-    <button type="submit" class="btn">
-      WhatsApp-এ অর্ডার পাঠান
-    </button>
-  </form>
-</section>
+      if (phoneDigits.replace(/\D/g, "").length < 8) {
+        errorBox.textContent = "সঠিক মোবাইল নম্বর লিখুন।";
+        errorBox.style.display = "block";
+        return;
+      }
 
-<section class="contact" id="contact">
-  <div class="section-title">
-    <h2>যোগাযোগ করুন</h2>
-    <p>Siam Typing Center</p>
-    <p>WhatsApp: 01785764241</p>
-  </div>
+      const message =
+        "📝 SIAM TYPING CENTER — NEW ORDER\n\n" +
+        "👤 নাম: " + name + "\n" +
+        "📱 গ্রাহকের নম্বর: " + phone + "\n" +
+        "🛠️ সার্ভিস: " + service + "\n" +
+        "📁 ফাইলের ধরন: " + fileType + "\n" +
+        "⏰ সময়সীমা: " + deadline + "\n\n" +
+        "📋 কাজের বিবরণ:\n" + details + "\n\n" +
+        "অনুগ্রহ করে কাজের মূল্য ও সময় জানাবেন।";
 
-  <a class="btn"
-     href="https://wa.me/8801785764241"
-     target="_blank" rel="noopener">
-    এখনই WhatsApp করুন
-  </a>
-</section>
-</main>
+      const whatsappURL =
+        "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(message);
 
-<footer>
-  <p>© <span id="year"></span> Siam Typing Center.
-  All Rights Reserved.</p>
-  <p>Designed for your digital needs.</p>
-</footer>
+      // ব্যবহারকারী নিজে WhatsApp-এ বার্তা যাচাই করে Send করবেন।
+      window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    });
 
-<script>
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-
-document.getElementById("orderForm").addEventListener("submit",
-  function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const service = document.getElementById("service").value;
-    const details = document.getElementById("details").value.trim();
-
-    const message =
-      "Siam Typing Center - নতুন অর্ডার\n\n" +
-      "নাম: " + name + "\n" +
-      "মোবাইল: " + phone + "\n" +
-      "সার্ভিস: " + service + "\n" +
-      "বিবরণ: " + details;
-
-    const url = "https://wa.me/8801785764241?text=" +
-      encodeURIComponent(message);
-
-    window.open(url, "_blank");
-  });
-</script>
+    // বর্তমান বছর স্বয়ংক্রিয়ভাবে দেখানো।
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
 
 </body>
 </html>

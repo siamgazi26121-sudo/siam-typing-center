@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Siam Typing Center - Professional Management Dashboard</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#060B19',
+                            800: '#0B132B',
+                            700: '#1C2541',
+                            600: '#2A365C',
+                            500: '#3A506B'
+                        },
+                        accent: {
+                            500: '#00B4D8',
+                            600: '#0077B6',
+                            400: '#90E0EF',
+                            300: '#CAF0F8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: #060B19;
+            color: #F1F5F9;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .glass-card {
+            background: rgba(28, 37, 65, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(144, 224, 239, 0.12);
+        }
+
+        .glass-card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 180, 216, 0.35);
+            box-shadow: 0 10px 25px -5px rgba(0, 180, 216, 0.15);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B132B;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A365C;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #00B4D8;
+        }
+
+        .active-tab {
+            background: linear-gradient(135deg, #0077B6 0%, #00B4D8 100%);
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-slate-100 min-h-screen flex flex-col md:flex-row antialiased overflow-x-hidden">
+
+    <!-- Sidebar Navigation (Desktop) -->
+    <aside class="hidden md:flex flex-col w-64 bg-navy-800/90 border-r border-navy-700/80 sticky top-0 h-screen z-40 p-4 justify-between">
+        <div>
+            <!-- Brand Logo Header -->
+            <div class="flex items-center space-x-3 px-2 py-3 mb-6 border-b border-navy-700/60">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-accent-600 to-accent-500 flex items-center justify-center shadow-lg shadow-accent-500/20 text-white font-bold text-xl">
+                    <i class="fa-solid fa-keyboard"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base tracking-tight text-white leading-tight">Siam Typing Center</h1>
+                    <p class="text-[11px] text-accent-400 font-medium flex items-center gap-1 mt-0.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span data-i18n="tagline">Official Dashboard</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1.5">
+                <button onclick="switchTab('overview')" id="nav-overview" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-navy-700 hover:text-white transition group active-tab">
+                    <i class="fa-solid fa-chart-pie text-base text-accent-400 group-hover:scale-110 transition-transform"></i>
+                    <span data-i18n="nav_overview">ড্যাশবোর্ড ওভারভিউ</span>
+                </button>
+                <button onclick="switchTab('new-order')" id="nav-new-order" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-navy-700 hover:text-white transition group">
+                    <i class="fa-solid fa-circle-plus text-base text-accent-400 group-hover:scale-110 transition-transform"></i>
+                    <span data-i18n="nav_new_order">নতুন অর্ডার তৈরি</span>
+                </button>
+                <button onclick="switchTab('orders')" id="nav-orders" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-navy-700 hover:text-white transition group">
+                    <i class="fa-solid fa-list-check text-base text-accent-400 group-hover:scale-110 transition-transform"></i>
+                    <span data-i18n="nav_orders">অর্ডার ম্যানেজমেন্ট</span>
+                </button>
+                <button onclick="switchTab('services')" id="nav-services" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-navy-700 hover:text-white transition group">
+                    <i class="fa-solid fa-briefcase text-base text-accent-400 group-hover:scale-110 transition-transform"></i>
+                    <span data-i18n="nav_services">সার্ভিস তালিকা</span>
+                </button>
+                <button onclick="switchTab('customers')" id="nav-customers" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-navy-700 hover:text-white transition group">
+                    <i class="fa-solid fa-users text-base text-accent-400 group-hover:scale-110 transition-transform"></i>
+                    <span data-i18n="nav_customers">কাস্টমার ডাটাবেজ</span>
+                </button>
+                <button onclick="switchTab('settings')" id="nav-settings" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-navy-700 hover:text-white transition group">
+                    <i class="fa-solid fa-sliders text-base text-accent-400 group-hover:scale-110 transition-transform"></i>
+                    <span data-i18n="nav_settings">সেটিংস ও সেটিংস</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Direct WhatsApp Callout Card -->
+        <div class="glass-card rounded-2xl p-3 border border-emerald-500/30 bg-emerald-950/20 text-center">
+            <p class="text-[11px] font-medium text-slate-300 mb-1" data-i18n="whatsapp_help">সরাসরি সহায়তা বা অর্ডার</p>
+            <a href="https://wa.me/8801785764241" target="_blank" class="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>01785764241</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Right Content Column -->
+    <div class="flex-1 flex flex-col min-w-0 min-h-screen pb-20 md:pb-6">
+        
+        <!-- Top App Header -->
+        <header class="sticky top-0 z-30 glass-card border-b border-navy-700/80 px-4 py-3 flex items-center justify-between shadow-lg">
+            <!-- Mobile Brand Toggle Header -->
+            <div class="flex items-center space-x-2.5 md:hidden">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-accent-600 to-accent-500 flex items-center justify-center text-white text-base font-bold shadow-md">
+                    <i class="fa-solid fa-keyboard"></i>
+                </div>
+                <div>
+                    <h2 class="font-bold text-sm text-white">Siam Typing Center</h2>
+                    <p class="text-[10px] text-accent-400">WhatsApp: 01785764241</p>
+                </div>
+            </div>
+
+            <!-- Page Title (Desktop) -->
+            <div class="hidden md:block">
+                <h2 id="headerPageTitle" class="text-base font-bold text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-pie text-accent-500"></i>
+                    <span data-i18n="nav_overview">ড্যাশবোর্ড ওভারভিউ</span>
+                </h2>
+            </div>
+
+            <!-- Header Action Utilities -->
+            <div class="flex items-center space-x-2">
+                <!-- Direct WhatsApp Button -->
+                <a href="https://wa.me/8801785764241" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/40 text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                    <span class="hidden sm:inline">WhatsApp</span>
+                </a>
+
+                <!-- Language Toggle Button -->
+                <button onclick="toggleAppLanguage()" class="px-2.5 py-1.5 rounded-xl bg-navy-700 hover:bg-navy-600 border border-slate-700 text-xs font-semibold text-accent-400 transition flex items-center gap-1">
+                    <i class="fa-solid fa-globe text-xs"></i>
+                    <span id="currentLangLabel">EN</span>
+                </button>
+
+                <!-- Download File Copy Button -->
+                <button onclick="downloadSelfFile()" class="px-3 py-1.5 rounded-xl bg-accent-500 hover:bg-accent-600 text-navy-900 font-bold text-xs transition flex items-center gap-1.5 shadow-md shadow-accent-500/20" title="Download HTML Source File">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span class="hidden sm:inline" data-i18n="download_app">ফাইল ডাউনলোড</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Body (Dynamic Tabs) -->
+        <main class="p-4 md:p-6 flex-1 max-w-7xl w-full mx-auto space-y-6">
+
+            <!-- TAB 1: OVERVIEW DASHBOARD -->
+            <section id="tab-overview" class="tab-page space-y-6">
+                <!-- Metric Summary Cards Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
+                    <!-- Total Orders Card -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-4 flex flex-col justify-between border-l-4 border-l-accent-500">
+                        <div class="flex items-center justify-between text-slate-400 mb-2">
+                            <span class="text-xs font-medium" data-i18n="card_total_orders">মোট অর্ডার</span>
+                            <div class="w-8 h-8 rounded-xl bg-accent-500/10 text-accent-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="metricTotalOrders" class="text-2xl font-bold text-white font-mono">0</h3>
+                            <p class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-arrow-trend-up"></i> <span data-i18n="all_time">সর্বমোট সংগৃহীত</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Pending Orders Card -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-4 flex flex-col justify-between border-l-4 border-l-amber-500">
+                        <div class="flex items-center justify-between text-slate-400 mb-2">
+                            <span class="text-xs font-medium" data-i18n="card_pending_orders">অপেক্ষমান অর্ডার</span>
+                            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="metricPendingOrders" class="text-2xl font-bold text-amber-400 font-mono">0</h3>
+                            <p class="text-[10px] text-amber-300/80 mt-1" data-i18n="pending_action">প্রসেসিং এর অপেক্ষায়</p>
+                        </div>
+                    </div>
+
+                    <!-- Completed Orders Card -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-4 flex flex-col justify-between border-l-4 border-l-emerald-500">
+                        <div class="flex items-center justify-between text-slate-400 mb-2">
+                            <span class="text-xs font-medium" data-i18n="card_completed_orders">সম্পন্ন অর্ডার</span>
+                            <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="metricCompletedOrders" class="text-2xl font-bold text-emerald-400 font-mono">0</h3>
+                            <p class="text-[10px] text-emerald-300/80 mt-1" data-i18n="delivery_ready">ডেলিভারি সম্পন্ন</p>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Metric Card -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-4 flex flex-col justify-between border-l-4 border-l-purple-500">
+                        <div class="flex items-center justify-between text-slate-400 mb-2">
+                            <span class="text-xs font-medium" data-i18n="card_revenue">মোট আয়</span>
+                            <div class="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="metricTotalRevenue" class="text-2xl font-bold text-purple-300 font-mono">৳0</h3>
+                            <p class="text-[10px] text-purple-400/80 mt-1" data-i18n="cash_received">নগদ প্রদান হিসাব</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Progress Bar Status Overview -->
+                <div class="glass-card rounded-2xl p-4 md:p-5 border border-navy-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-chart-bar text-accent-500"></i>
+                            <span data-i18n="order_progress">অর্ডার টাইপ ও স্ট্যাটাস অগ্রগতি</span>
+                        </h3>
+                        <span id="overviewProgressPercent" class="text-xs font-mono font-bold text-accent-400">0% Completed</span>
+                    </div>
+                    <div class="w-full bg-navy-900 rounded-full h-3 overflow-hidden p-0.5 border border-slate-700 flex">
+                        <div id="barCompleted" class="bg-emerald-500 h-full transition-all duration-500 rounded-l-full" style="width: 0%" title="Completed"></div>
+                        <div id="barProcessing" class="bg-accent-500 h-full transition-all duration-500" style="width: 0%" title="Processing"></div>
+                        <div id="barPending" class="bg-amber-500 h-full transition-all duration-500 rounded-r-full" style="width: 0%" title="Pending"></div>
+                    </div>
+                    <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> <span data-i18n="status_completed">সম্পন্ন</span></span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-accent-500"></span> <span data-i18n="status_processing">প্রসেসিং</span></span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> <span data-i18n="status_pending">পেন্ডিং</span></span>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Preview Table -->
+                <div class="glass-card rounded-2xl p-4 md:p-5 border border-navy-700 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-navy-700/80">
+                        <h3 class="text-sm font-bold text-slate-100 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-accent-500"></i>
+                            <span data-i18n="recent_orders_title">সাম্প্রতিক অর্ডারসমূহ</span>
+                        </h3>
+                        <button onclick="switchTab('orders')" class="text-xs font-bold text-accent-400 hover:text-accent-300 transition flex items-center gap-1">
+                            <span data-i18n="view_all">সব দেখুন</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-navy-800/80 text-slate-400 uppercase tracking-wider text-[10px]">
+                                <tr>
+                                    <th class="p-3 rounded-l-xl">Order ID</th>
+                                    <th class="p-3" data-i18n="table_customer">কাস্টমার</th>
+                                    <th class="p-3" data-i18n="table_service">সার্ভিস</th>
+                                    <th class="p-3" data-i18n="table_pages">পৃষ্ঠা</th>
+                                    <th class="p-3" data-i18n="table_total">মূল্য</th>
+                                    <th class="p-3" data-i18n="table_status">স্ট্যাটাস</th>
+                                    <th class="p-3 rounded-r-xl text-right" data-i18n="table_action">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTbody" class="divide-y divide-navy-700/50 text-slate-200">
+                                <!-- Dynamic Render -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: NEW ORDER ENTRY FORM -->
+            <section id="tab-new-order" class="tab-page hidden max-w-3xl mx-auto space-y-6">
+                <div class="glass-card rounded-2xl p-5 md:p-7 border border-navy-700 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-navy-700">
+                        <div class="w-10 h-10 rounded-xl bg-accent-500/20 text-accent-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white" data-i18n="form_title">নতুন টাইপিং অর্ডার যোগ করুন</h3>
+                            <p class="text-xs text-slate-400" data-i18n="form_subtitle">কাস্টমারের তথ্য ও সার্ভিসের বিবরণ দিয়ে সরাসরি সাবমিট করুন</p>
+                        </div>
+                    </div>
+
+                    <form id="newOrderForm" onsubmit="handleCreateOrder(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Customer Name -->
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5" data-i18n="lbl_cust_name">কাস্টমারের নাম *</label>
+                                <input type="text" id="formCustName" required class="w-full bg-navy-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accent-500 transition" placeholder="মো: রহিম হোসেন">
+                            </div>
+
+                            <!-- Customer Phone -->
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5" data-i18n="lbl_cust_phone">মোবাইল নম্বর (WhatsApp) *</label>
+                                <input type="tel" id="formCustPhone" required class="w-full bg-navy-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accent-500 transition" placeholder="01712345678">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Service Type Select -->
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5" data-i18n="lbl_service_type">সার্ভিসের ধরন *</label>
+                                <select id="formServiceType" onchange="calculateOrderCost()" class="w-full bg-navy-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accent-500 transition">
+                                    <option value="Bangla Typing" data-rate="25">বাংলা টাইপিং (৳25 / পৃষ্ঠা)</option>
+                                    <option value="English Typing" data-rate="20">ইংরেজি টাইপিং (৳20 / পৃষ্ঠা)</option>
+                                    <option value="Govt Form Fill-up" data-rate="50">সরকারি ফর্ম পূরণ (৳50 / কপি)</option>
+                                    <option value="Document Formatting" data-rate="15">ডকুমেন্ট ফরম্যাটিং (৳15 / পৃষ্ঠা)</option>
+                                    <option value="Resume / CV Design" data-rate="150">সিভি / রেজুমে তৈরি (৳150 / ফাইল)</option>
+                                    <option value="PDF Conversion" data-rate="10">পিডিএফ টু ওয়ার্ড রূপান্তর (৳10 / পৃষ্ঠা)</option>
+                                </select>
+                            </div>
+
+                            <!-- Page Count -->
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5" data-i18n="lbl_page_count">পৃষ্ঠা / ফাইল সংখ্যা *</label>
+                                <input type="number" id="formPageCount" min="1" value="1" oninput="calculateOrderCost()" required class="w-full bg-navy-900/90 border border-slate-700 rounded-xl px-3
